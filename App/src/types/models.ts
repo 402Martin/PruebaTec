@@ -14,8 +14,8 @@ type Currency = {
 };
 
 type Transaction = {
-  originAccountId: number;
-  destinationAccountId: number;
+  accountFrom: number;
+  accountTo: number;
   amount: number;
   date: Date;
   description: string;
