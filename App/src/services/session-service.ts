@@ -2,12 +2,14 @@ import jwt from 'jsonwebtoken';
 import Database from '../db/database';
 import { logger } from '../utils';
 
+const config = require('../env.json')[process.env.NODE_ENV || 'development'];
+
 const { models } = Database.mysql;
 
 const login = async (idDocument: String, password: String) => {
   logger.info(`Login attempt by ${idDocument}`);
 
-  const userdb = await models.User.finOne({ where: { idDocument, password } });
+  const userdb = await models.User.findOne({ where: { idDocument, password } });
 
   if (!userdb) {
     throw new Error('Invalid Credentials');

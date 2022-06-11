@@ -53,15 +53,14 @@ const Transaction = (sequelize: any) => {
   };
 
   TransactionModel.validate = (transaction: Transaction) => {
-    if (!transaction.amount || transaction.amount < 0) {
+    if (!transaction.amount || transaction.amount < 0)
       throw new Error('Amount is incorrect');
-    }
-    if (!transaction.date || new Date(transaction.date) > new Date()) {
+    if (transaction.accountFrom === transaction.accountTo)
+      throw new Error(`Cannot transfer money to the same account`);
+    if (!transaction.date || new Date(transaction.date) > new Date())
       throw new Error('Date is incorrect');
-    }
-    if (!transaction.description || transaction.description.length < 3) {
+    if (!transaction.description || transaction.description.length < 3)
       throw new Error('please enter a description of at least 3 characters');
-    }
   };
 
   return TransactionModel;
