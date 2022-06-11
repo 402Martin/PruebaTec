@@ -14,16 +14,31 @@ const isOwner = async (idDocument: number, idAccount: number) => {
   const isOwnerOfAccounts = await models.Account.findAll({
     where,
   });
-  if (!isOwnerOfAccounts) {
-    throw new Error(`Account dosn't belong to this user`);
-  }
   return isOwnerOfAccounts;
+};
+
+const getAccount = async (idDocument: number, idAccount: number) => {
+  const user = await models.User.findOne({ where: { idDocument } });
+  const where: { userId: number; id?: number } = {
+    userId: user.id,
+    id: idAccount,
+  };
+
+  const account = await models.Account.findOne({
+    where,
+  });
+
+  if (!account) throw new Error('Account not found');
+
+  return account;
 };
 
 const createTransaction = async (
   transactionIn: Transaction,
-): Promise<Transaction> => {
+  idDocument: number,
+) => {
   models.Transaction.validate(transactionIn);
+  await getAccount(idDocument, transactionIn.accountFrom);
   const transaction = await models.Transaction.create(transactionIn);
   return transaction;
 };
