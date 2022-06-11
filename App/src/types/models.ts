@@ -4,13 +4,13 @@ type User = {
 };
 type Account = {
   amount: number;
-  idDocument: Number;
-  idCurrency: string;
+  userId: number;
+  currencyId: number;
 };
 
 type Currency = {
-  idCurrency: number;
-  Currency: string;
+  idCurrency: string;
+  currency: string;
 };
 
 export { User, Account, Currency };

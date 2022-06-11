@@ -18,15 +18,18 @@ const insertCurrency = async () => {
   });
 };
 
-// const insertAccounts = async () => {
-//   throw new Error('not implemented');
-// };
+const insertAccounts = async () => {
+  data.mockedAccounts.map(async (account) => {
+    const accountdb = await models.Account.create(account);
+    return accountdb;
+  });
+};
 
 const insertMockedData = async () => {
   try {
     await insertCurrency();
     await insertUsers();
-    //   insertAccounts();
+    await insertAccounts();
     return true;
   } catch (err) {
     logger.error(err);

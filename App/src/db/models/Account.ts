@@ -5,7 +5,7 @@ const Account = (sequelize: any) => {
     amount: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
+      unique: false,
       validate: {
         notNull: true,
         isNumeric: true,
@@ -17,11 +17,13 @@ const Account = (sequelize: any) => {
     AccountModel.user = AccountModel.belongsTo(models.User, {
       foreignKey: {
         allowNull: false,
+        name: 'userId',
       },
     });
     AccountModel.currency = AccountModel.belongsTo(models.Currency, {
       foreignKey: {
         allowNull: false,
+        name: 'currencyId',
       },
     });
   };
