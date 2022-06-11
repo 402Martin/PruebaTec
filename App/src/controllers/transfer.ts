@@ -10,7 +10,6 @@ TransferController.post(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const transaction = req.body;
-      console.log(transaction);
       const createdTransaction = await createTransaction(transaction);
       return res.send(createdTransaction);
     } catch (err: any) {

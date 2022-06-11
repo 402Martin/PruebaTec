@@ -6,6 +6,7 @@ const { models } = Database.mysql;
 const createTransaction = async (
   transactionIn: Transaction,
 ): Promise<Transaction> => {
+  models.Transaction.validate(transactionIn);
   const transaction = await models.Transaction.create(transactionIn);
   return transaction;
 };
