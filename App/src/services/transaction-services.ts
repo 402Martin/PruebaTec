@@ -38,7 +38,11 @@ const createTransaction = async (
   idDocument: number,
 ) => {
   models.Transaction.validate(transactionIn);
-  await getAccount(idDocument, transactionIn.accountFrom);
+  const account = await getAccount(idDocument, transactionIn.accountFrom);
+
+  if (account.amount < transactionIn.amount)
+    throw new Error('Not enough money');
+
   const transaction = await models.Transaction.create(transactionIn);
   return transaction;
 };
