@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { NextFunction, Response, Router } from 'express';
 import { createTransaction } from '../services/transaction-services';
+import { RequestWithUser } from '../types';
 import parseError from '../utils/helperFunctions';
 
 const TransferController = Router();
@@ -7,10 +8,13 @@ const TransferController = Router();
 // POST: /transfer
 TransferController.post(
   '/',
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: RequestWithUser, res: Response, next: NextFunction) => {
     try {
       const transaction = req.body;
-      const createdTransaction = await createTransaction(transaction);
+      const createdTransaction = await createTransaction(
+        transaction,
+        req.user.idDocument,
+      );
       return res.send(createdTransaction);
     } catch (err: any) {
       const error = parseError(err);
