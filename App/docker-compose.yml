@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  pruebadb:
+    container_name: pruebadb
+    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'prueba_db'
+      MYSQL_USER: 'prueba'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./dockercompose/mysql:/var/lib/mysql
+    networks:
+      - sa-network
+networks:
+  sa-network:
+    name: sa-network

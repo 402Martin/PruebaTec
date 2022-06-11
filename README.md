@@ -1,2 +1,2 @@
-# PruebaTec
+# PruebaTecnica
  
