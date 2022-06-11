@@ -1,4 +1,5 @@
 import DataTypes from 'sequelize';
+import { User } from '../../types';
 
 const User = (sequelize: any) => {
   const UserModel = sequelize.define('User', {
@@ -16,14 +17,17 @@ const User = (sequelize: any) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
-      validate: {
-        notNull: true,
-        is: /^[A-Za-z\s']+$/,
-      },
     },
   });
-  UserModel.associate = (models: any) => {};
-  // associations can be defined here
+
+  UserModel.validate = (user: User) => {
+    if (!(user.idDocument < 100000 || user.idDocument > 1000000)) {
+      throw new Error('user document incorrect');
+    }
+    if (!user.password || user.password?.length < 4) {
+      throw new Error('password must at least be 4 characters');
+    }
+  };
 
   return UserModel;
 };

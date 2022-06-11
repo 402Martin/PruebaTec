@@ -8,17 +8,14 @@ const Currency = (sequelize: any) => {
       unique: true,
       validate: {
         notNull: true,
-        isNumeric: true,
-        isInt: true,
       },
     },
-    Currency: {
+    currency: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
       validate: {
         notNull: true,
-        is: /^[A-Za-z\s']+$/,
       },
     },
   });

@@ -25,7 +25,6 @@ const Account = (sequelize: any) => {
       },
     });
   };
-  // associations can be defined here
 
   return AccountModel;
 };
