@@ -13,4 +13,12 @@ type Currency = {
   currency: string;
 };
 
-export { User, Account, Currency };
+type Transaction = {
+  originAccountId: number;
+  destinationAccountId: number;
+  amount: number;
+  date: Date;
+  description: string;
+};
+
+export { User, Account, Currency, Transaction };

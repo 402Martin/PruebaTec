@@ -25,11 +25,19 @@ const insertAccounts = async () => {
   });
 };
 
+const insertTransactions = async () => {
+  data.mockedTransactions.map(async (transaction) => {
+    const transactiondb = await models.Transaction.create(transaction);
+    return transactiondb;
+  });
+};
+
 const insertMockedData = async () => {
   try {
     await insertCurrency();
     await insertUsers();
     await insertAccounts();
+    await insertTransactions();
     return true;
   } catch (err) {
     logger.error(err);

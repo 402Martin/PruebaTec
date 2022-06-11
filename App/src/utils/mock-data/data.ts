@@ -1,4 +1,4 @@
-import { Account, Currency, User } from '../../types';
+import { Account, Currency, Transaction, User } from '../../types';
 
 const mockedUsers: User[] = [
   { idDocument: 50213110, password: 'user9' },
@@ -36,6 +36,41 @@ const mockedAccounts: Account[] = [
   { currencyId: 2, userId: 4, amount: 100 },
 ];
 
-const data = { mockedAccounts, mockedCurrency, mockedUsers };
+const mockedTransactions: Transaction[] = [
+  {
+    amount: 50,
+    originAccountId: 1,
+    destinationAccountId: 2,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 150,
+    originAccountId: 4,
+    destinationAccountId: 2,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 520,
+    originAccountId: 2,
+    destinationAccountId: 3,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    originAccountId: 6,
+    destinationAccountId: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+];
+const data = {
+  mockedAccounts,
+  mockedCurrency,
+  mockedUsers,
+  mockedTransactions,
+};
 
 export default data;
