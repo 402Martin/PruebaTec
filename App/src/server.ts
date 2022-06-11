@@ -1,5 +1,6 @@
 import express from 'express';
 import winston from 'winston';
+import Routes from './controllers/routes';
 import httpLogger from './middlewares/http-logger';
 import logger, { consoleLoggerFormat } from './utils/logger';
 
@@ -9,6 +10,8 @@ const port = 3000;
 export default async () => {
   app.use(express.json());
   app.use(httpLogger);
+  app.use(Routes);
+
   app.listen(port, () => {
     logger.info(`app listening on port ${port}`);
   });

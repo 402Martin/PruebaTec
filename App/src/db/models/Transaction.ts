@@ -37,7 +37,7 @@ const Transaction = (sequelize: any) => {
       {
         foreignKey: {
           allowNull: false,
-          name: 'originAccountId',
+          name: 'accountFrom',
         },
       },
     );
@@ -46,7 +46,7 @@ const Transaction = (sequelize: any) => {
       {
         foreignKey: {
           allowNull: false,
-          name: 'destinationAccountId',
+          name: 'accountTo',
         },
       },
     );
