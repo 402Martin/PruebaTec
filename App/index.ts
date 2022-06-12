@@ -10,9 +10,9 @@ import insertMockedData from './src/utils/mock-data/imports';
     const success = await Database.init();
     if (!success) throw new Error('Databases init failed');
 
-    const succesInserts = await insertMockedData();
+    // const succesInserts = await insertMockedData();
 
-    if (!succesInserts) throw new Error('Databases init failed');
+    // if (!succesInserts) throw new Error('Databases init failed');
 
     await serverInit();
 

@@ -27,7 +27,7 @@ const initMySQL = async () => {
     Database.models = mysqlModels(Database.mysql);
 
     // Recreates database each time
-    await Database.mysql.sync({ force: true });
+    // await Database.mysql.sync({ force: true });
     logger.info(
       'Connection to MYSQL Database has been established successfully.',
     );
