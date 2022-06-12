@@ -17,12 +17,12 @@ const calcuateAmountTo = async (
       where: { id: accountTo.currencyId },
     });
 
-    const euro = await models.Currency.findOne({
-      where: { idCurrency: 'EUR' },
+    const currencyFrom = await models.Currency.findOne({
+      where: { id: accountFrom.currencyId },
     });
 
     amountToDeposit =
-      (transactionIn.amount / euro.eurRate) * currencyTo.eurRate;
+      (transactionIn.amount / currencyFrom) * currencyTo.eurRate;
   }
   return amountToDeposit;
 };
@@ -39,8 +39,12 @@ const createTransaction = async (
   );
   const accountTo = await getAccount(idDocument, transactionIn.accountTo);
 
-  if (accountFrom.amount < transactionIn.amount)
-    throw new Error('Not enough money');
+  const totalDeduction =
+    accountFrom.userId === accountTo.userId
+      ? transactionIn.amount
+      : transactionIn.amount * 1.01;
+
+  if (accountFrom.amount < totalDeduction) throw new Error('Not enough money');
 
   const amountToDeposit = await calcuateAmountTo(
     transactionIn,
@@ -50,7 +54,7 @@ const createTransaction = async (
 
   const transaction = await models.Transaction.create(transactionIn);
   await models.Account.update(
-    { amount: parseFloat(accountFrom.amount) - transaction.amount },
+    { amount: parseFloat(accountFrom.amount) - totalDeduction },
     { where: { id: transaction.accountFrom } },
   );
   await models.Account.update(
