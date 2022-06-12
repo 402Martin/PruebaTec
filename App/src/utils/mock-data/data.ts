@@ -14,9 +14,9 @@ const mockedUsers: User[] = [
 ];
 
 const mockedCurrency: Currency[] = [
-  { currency: 'U$S', idCurrency: 'Usd' },
-  { currency: '$', idCurrency: 'Peso' },
-  { currency: '€', idCurrency: 'Euro' },
+  { currency: 'USD', idCurrency: 'Usd' },
+  { currency: 'UYU', idCurrency: 'Peso' },
+  { currency: 'EUR', idCurrency: 'Euro' },
 ];
 
 const mockedAccounts: Account[] = [
