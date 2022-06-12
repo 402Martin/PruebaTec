@@ -75,7 +75,7 @@ const createTransaction = async (
     await trans.commit();
     return transaction;
   } catch (err) {
-    await trans.rollBack();
+    await trans.rollback();
     throw err;
   }
 };
@@ -84,6 +84,8 @@ const getTransactions = async (
   query: any,
   idDocument: number,
 ): Promise<Transaction> => {
+  logger.info(`Getting transactions`);
+
   const accounts = await isOwner(idDocument, query.sourceAccountId);
 
   const where: { date?: any; accountFrom?: any } = {
