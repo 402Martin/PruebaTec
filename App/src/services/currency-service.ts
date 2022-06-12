@@ -4,7 +4,7 @@ import getQuotes from '../helpers/fixer-helper';
 const { models } = Database.mysql;
 
 const setCurrencies = async () => {
-  const isgettingQuotes = false;
+  const isgettingQuotes = true;
 
   if (isgettingQuotes) {
     const rates = await getQuotes();
