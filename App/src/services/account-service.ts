@@ -14,12 +14,15 @@ const isOwner = async (idDocument: number, idAccount: number) => {
   return isOwnerOfAccounts;
 };
 
-const getAccount = async (idDocument: number, idAccount: number) => {
+const getAccount = async (
+  idDocument: number,
+  idAccount: number,
+  isFromUser: boolean = false,
+) => {
   const user = await models.User.findOne({ where: { idDocument } });
-  const where: { userId: number; id?: number } = {
-    userId: user.id,
-    id: idAccount,
-  };
+  const where: { userId?: number; id?: number } = isFromUser
+    ? { userId: user.id, id: idAccount }
+    : { id: idAccount };
 
   const account = await models.Account.findOne({
     where,

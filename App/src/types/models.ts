@@ -11,6 +11,7 @@ type Account = {
 type Currency = {
   idCurrency: string;
   currency: string;
+  eurRate: any;
 };
 
 type Transaction = {

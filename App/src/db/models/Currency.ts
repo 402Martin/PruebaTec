@@ -18,6 +18,15 @@ const Currency = (sequelize: any) => {
         notNull: true,
       },
     },
+    eurRate: {
+      type: DataTypes.DECIMAL(8, 4),
+      allowNull: false,
+      defaultValue: 1,
+      unique: false,
+      validate: {
+        notNull: true,
+      },
+    },
   });
   CurrencyModel.associate = (models: any) => {};
   // associations can be defined here
