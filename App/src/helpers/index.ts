@@ -1,3 +1,4 @@
+import currencyCron from './cron-helper';
 import getQuotes from './fixer-helper';
 
-export default getQuotes;
+export { getQuotes, currencyCron };

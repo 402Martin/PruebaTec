@@ -3,13 +3,11 @@ import DataTypes from 'sequelize';
 const Account = (sequelize: any) => {
   const AccountModel = sequelize.define('Account', {
     amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(8, 4),
       allowNull: false,
       unique: false,
       validate: {
         notNull: true,
-        isNumeric: true,
-        isInt: true,
       },
     },
   });

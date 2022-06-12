@@ -1,28 +1,83 @@
 import Database from '../db/database';
-import { Transaction } from '../types';
+import { Account, Transaction } from '../types';
+import { logger } from '../utils';
 import { getAccount, isOwner } from './account-service';
 
 const { Op } = require('sequelize');
 
 const { models } = Database.mysql;
 
+const calcuateAmountTo = async (
+  transactionIn: Transaction,
+  accountTo: Account,
+  accountFrom: Account,
+) => {
+  logger.info(`Calculating amount in account to Currency `);
+  let amountToDeposit = transactionIn.amount;
+  if (accountTo.currencyId !== accountFrom.currencyId) {
+    const currencyTo = await models.Currency.findOne({
+      where: { id: accountTo.currencyId },
+    });
+
+    const currencyFrom = await models.Currency.findOne({
+      where: { id: accountFrom.currencyId },
+    });
+
+    amountToDeposit =
+      (transactionIn.amount / currencyFrom) * currencyTo.eurRate;
+  }
+  return amountToDeposit;
+};
+
 const createTransaction = async (
   transactionIn: Transaction,
   idDocument: number,
 ) => {
-  models.Transaction.validate(transactionIn);
-  const accountFrom = await getAccount(
-    idDocument,
-    transactionIn.accountFrom,
-    true,
+  logger.info(
+    `Validating transaction from ${transactionIn.accountFrom} to ${transactionIn.accountTo}`,
   );
-  const accountTo = await getAccount(idDocument, transactionIn.accountFrom);
+  const trans = await Database.mysql.transaction();
+  try {
+    models.Transaction.validate(transactionIn);
+    const accountFrom = await getAccount(
+      idDocument,
+      transactionIn.accountFrom,
+      true,
+    );
+    const accountTo = await getAccount(idDocument, transactionIn.accountTo);
+    const totalDeduction =
+      accountFrom.userId === accountTo.userId
+        ? transactionIn.amount
+        : transactionIn.amount * 1.01;
 
-  if (accountFrom.amount < transactionIn.amount)
-    throw new Error('Not enough money');
+    if (accountFrom.amount < totalDeduction)
+      throw new Error('Not enough money');
 
-  const transaction = await models.Transaction.create(transactionIn);
-  return transaction;
+    const amountToDeposit = await calcuateAmountTo(
+      transactionIn,
+      accountTo,
+      accountFrom,
+    );
+
+    logger.info(`Creating transaction`);
+
+    const transaction = await models.Transaction.create(transactionIn);
+
+    models.Account.update(
+      { amount: parseFloat(accountFrom.amount) - totalDeduction },
+      { where: { id: transaction.accountFrom } },
+    );
+    models.Account.update(
+      { amount: parseFloat(accountTo.amount) + amountToDeposit },
+      { where: { id: transaction.accountTo } },
+    );
+    logger.info(`Done with transaction `);
+    await trans.commit();
+    return transaction;
+  } catch (err) {
+    await trans.rollBack();
+    throw err;
+  }
 };
 
 const getTransactions = async (
