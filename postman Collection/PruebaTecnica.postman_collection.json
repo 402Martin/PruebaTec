@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/transactions?sourceAccountId=13",
+							"raw": "localhost:3000/transactions?from=2022-06-10&to=2023-07-11&sourceAccountId=3",
 							"host": [
 								"localhost"
 							],
@@ -26,17 +26,15 @@
 							"query": [
 								{
 									"key": "from",
-									"value": "2021-07-11",
-									"disabled": true
+									"value": "2022-06-10"
 								},
 								{
 									"key": "to",
-									"value": "2023-07-11",
-									"disabled": true
+									"value": "2023-07-11"
 								},
 								{
 									"key": "sourceAccountId",
-									"value": "13"
+									"value": "3"
 								}
 							]
 						}
@@ -50,7 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"accountFrom\": 1,\r\n  \"accountTo\": 2,\r\n  \"amount\" : 1111110,\r\n  \"date\": \"2022-07-11\",\r\n  \"description\": \"description\"\r\n }",
+							"raw": "{ \r\n  \"accountFrom\": 3,\r\n  \"accountTo\": 8,\r\n  \"amount\" : 1,\r\n  \"date\": \"2022-06-11\",\r\n  \"description\": \"description\"\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,7 +74,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZERvY3VtZW50Ijo1MDIxMzExMiwiaWF0IjoxNjU0OTk1NzUzfQ.kIR1hIHOzRfBpVrAL_Dyx0MpG3V_Cht7i-FyqwfmxgY",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZERvY3VtZW50Ijo1MDIxMzExMiwiaWF0IjoxNjU1MTQ2MzA5fQ.uiW9rHFOzRXferc7XpdAstwEUawCiNSKstmqOmmH-TU",
 						"type": "string"
 					}
 				]
