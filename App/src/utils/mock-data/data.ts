@@ -65,6 +65,49 @@ const mockedTransactions: Transaction[] = [
     date: new Date(),
     description: 'desc',
   },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 3,
+    accountTo: 4,
+    date: new Date('2022-06-11: 00:00:01'),
+    description: 'desc',
+  },
+
+  {
+    amount: 530,
+    accountFrom: 3,
+    accountTo: 4,
+    date: new Date('2022-02-11 00:00:01'),
+    description: 'desc',
+  },
 ];
 const data = {
   mockedAccounts,

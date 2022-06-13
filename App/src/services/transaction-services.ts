@@ -24,7 +24,7 @@ const calcuateAmountTo = async (
     });
 
     amountToDeposit =
-      (transactionIn.amount / currencyFrom) * currencyTo.eurRate;
+      (transactionIn.amount / currencyFrom.eurRate) * currencyTo.eurRate;
   }
   return amountToDeposit;
 };
@@ -58,7 +58,7 @@ const createTransaction = async (
       accountTo,
       accountFrom,
     );
-
+    console.log(amountToDeposit);
     logger.info(`Creating transaction`);
 
     const transaction = await models.Transaction.create(transactionIn);

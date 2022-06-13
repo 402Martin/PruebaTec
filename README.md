@@ -16,6 +16,7 @@ Para el setup se requier tener docker, node js, sql workbench para poder ver la 
    `npm i `
 2. Levantar el componente de docker, tener en cuenta que si la contraseña del root user es distinto a 'password', se tiene que cambiar en el docker-compose. Para levantar el componente:
    `docker-compose up pruebadb`
+   (Antes de correrlo el docker pruebadb debe de estar corriendo.)
 
 3. Correr la applicacion:
    `npm start`

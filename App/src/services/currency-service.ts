@@ -4,20 +4,16 @@ import getQuotes from '../helpers/fixer-helper';
 const { models } = Database.mysql;
 
 const setCurrencies = async () => {
-  const isgettingQuotes = true;
+  const rates = await getQuotes();
 
-  if (isgettingQuotes) {
-    const rates = await getQuotes();
-
-    await models.Currency.update(
-      { eurRate: rates.UYU },
-      { where: { idCurrency: 'UYU' } },
-    );
-    await models.Currency.update(
-      { eurRate: rates.USD },
-      { where: { idCurrency: 'USD' } },
-    );
-  }
+  await models.Currency.update(
+    { eurRate: rates.UYU },
+    { where: { idCurrency: 'UYU' } },
+  );
+  await models.Currency.update(
+    { eurRate: rates.USD },
+    { where: { idCurrency: 'USD' } },
+  );
 };
 
 export default setCurrencies;
