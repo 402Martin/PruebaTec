@@ -23,7 +23,7 @@ Para el setup se requier tener docker, node js, sql workbench para poder ver la 
 
 #### Consideraciones:
 
-Para evitar que el cron de fixer.io se utilize una variable en el env.json llamada development que si se cambia a false, trae los rates y los actualiza sino corre el metodo pero no lo trae. Otras funcionalidades tambien estan atadas a esta.
+Para evitar que el cron de fixer.io se utilize innecesariamente se creo una variable en el env.json llamada development que si se cambia a false, trae los rates y los actualiza sino corre el metodo pero no lo trae. Otras funcionalidades tambien estan atadas a esta.
 
 En el env.json tambien se encuentra las variables de jwtKey, para el token y middelware de el user, tambien se encuntran la fixerkey que es el valor de la key de la api de fixer.
 
