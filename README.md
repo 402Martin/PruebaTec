@@ -34,3 +34,12 @@ Fixer es actualizado cada minuto por ende se trae 1 vez por minuto.
 ### Postman collection
 
 Primero se debe hacer login, y luego en la carpeta transactions en la seccion de Authorization poner el token del login. luego utilizar las consultas.
+
+
+### Limitaciones y mejoras:
+Al ser una prueba, no creo que seria necesario expandirse en cuanto a diversas base de datos como redis o mongo. Sin embargo si seria un proyecto real se podria usar redis como una bbdd que cache queries o datos que seran accedidos de manera mas rapida por usar redis. Tambien se puede usar mongodb para hacer que la escritura de la transaccion mas rapidas, pero el resto de la bbdd mantenerla en mysql. 
+
+Tambien la variable de development se chequea con un if que si bien hace el trabajo no es una buena practica.
+
+
+
