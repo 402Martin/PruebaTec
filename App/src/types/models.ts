@@ -11,11 +11,12 @@ type Account = {
 type Currency = {
   idCurrency: string;
   currency: string;
+  eurRate: any;
 };
 
 type Transaction = {
-  originAccountId: number;
-  destinationAccountId: number;
+  accountFrom: number;
+  accountTo: number;
   amount: number;
   date: Date;
   description: string;

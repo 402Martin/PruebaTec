@@ -4,32 +4,27 @@ import data from './data';
 
 const { models } = Database.mysql;
 const insertUsers = async () => {
-  data.mockedUsers.map(async (user) => {
-    models.User.validate(user);
-    const userdb = await models.User.create(user);
-    return userdb;
-  });
+  logger.info('Starting inserting users');
+  await models.User.bulkCreate(data.mockedUsers);
+  logger.info('Finished inserting users');
 };
 
 const insertCurrency = async () => {
-  data.mockedCurrency.map(async (currency) => {
-    const currencydb = await models.Currency.create(currency);
-    return currencydb;
-  });
+  logger.info('Starting inserting currencies');
+  await models.Currency.bulkCreate(data.mockedCurrency);
+  logger.info('Finished inserting currencies');
 };
 
 const insertAccounts = async () => {
-  data.mockedAccounts.map(async (account) => {
-    const accountdb = await models.Account.create(account);
-    return accountdb;
-  });
+  logger.info('Starting inserting accounts');
+  await models.Account.bulkCreate(data.mockedAccounts);
+  logger.info('Finished inserting accounts');
 };
 
 const insertTransactions = async () => {
-  data.mockedTransactions.map(async (transaction) => {
-    const transactiondb = await models.Transaction.create(transaction);
-    return transactiondb;
-  });
+  logger.info('Starting inserting transactions');
+  await models.Transaction.bulkCreate(data.mockedTransactions);
+  logger.info('Finished inserting transactions');
 };
 
 const insertMockedData = async () => {

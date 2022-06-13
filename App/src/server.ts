@@ -1,5 +1,9 @@
 import express from 'express';
 import winston from 'winston';
+import Routes from './controllers/routes';
+import SessionController from './controllers/session-controller';
+import auth from './middlewares/auth';
+import errorHandler from './middlewares/error-handler';
 import httpLogger from './middlewares/http-logger';
 import logger, { consoleLoggerFormat } from './utils/logger';
 
@@ -9,6 +13,13 @@ const port = 3000;
 export default async () => {
   app.use(express.json());
   app.use(httpLogger);
+  app.use('/auth', SessionController);
+
+  app.use(auth());
+  app.use(Routes);
+
+  app.use(errorHandler);
+
   app.listen(port, () => {
     logger.info(`app listening on port ${port}`);
   });

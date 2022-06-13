@@ -14,9 +14,9 @@ const mockedUsers: User[] = [
 ];
 
 const mockedCurrency: Currency[] = [
-  { currency: 'U$S', idCurrency: 'Usd' },
-  { currency: '$', idCurrency: 'Peso' },
-  { currency: '€', idCurrency: 'Euro' },
+  { idCurrency: 'USD', currency: 'US$', eurRate: 1.0518 },
+  { idCurrency: 'UYU', currency: '$', eurRate: 41.8484 },
+  { idCurrency: 'EUR', currency: '€', eurRate: 1 },
 ];
 
 const mockedAccounts: Account[] = [
@@ -39,30 +39,73 @@ const mockedAccounts: Account[] = [
 const mockedTransactions: Transaction[] = [
   {
     amount: 50,
-    originAccountId: 1,
-    destinationAccountId: 2,
+    accountFrom: 1,
+    accountTo: 2,
     date: new Date(),
     description: 'desc',
   },
   {
     amount: 150,
-    originAccountId: 4,
-    destinationAccountId: 2,
+    accountFrom: 4,
+    accountTo: 2,
     date: new Date(),
     description: 'desc',
   },
   {
     amount: 520,
-    originAccountId: 2,
-    destinationAccountId: 3,
+    accountFrom: 2,
+    accountTo: 3,
     date: new Date(),
     description: 'desc',
   },
   {
     amount: 530,
-    originAccountId: 6,
-    destinationAccountId: 8,
+    accountFrom: 6,
+    accountTo: 8,
     date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 6,
+    accountTo: 8,
+    date: new Date(),
+    description: 'desc',
+  },
+  {
+    amount: 530,
+    accountFrom: 3,
+    accountTo: 4,
+    date: new Date('2022-06-11: 00:00:01'),
+    description: 'desc',
+  },
+
+  {
+    amount: 530,
+    accountFrom: 3,
+    accountTo: 4,
+    date: new Date('2022-02-11 00:00:01'),
     description: 'desc',
   },
 ];
